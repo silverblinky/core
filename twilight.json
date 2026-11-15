@@ -1,43 +1,21 @@
 {
-  "name": "core-saudi",
-  "title": "كور | العطور الصلبة السعودية",
-  "version": "1.0.0",
-  "author": "Core Saudi",
-  "description": "ثيم فاخر وبسيط مصمم خصيصاً لمتجر كور مع حاسبة باقة الرائحتين واختبار تحديد الرائحة التفاعلي.",
-  "features": [
-    "rtl",
-    "responsive"
-  ],
-  "settings": {
-    "header": {
-      "title": "إعدادات الهيدر",
-      "fields": {
-        "show_announcement": {
-          "type": "boolean",
-          "label": "عرض شريط التنبيهات",
-          "default": true
-        },
-        "announcement_text": {
-          "type": "text",
-          "label": "نص التنبيه",
-          "default": "استخدم كود NEW25 للحصول على خصم ترحيبي"
-        }
-      }
+    "name": {
+        "ar": "كور - عطور صلبة",
+        "en": "Core Saudi - Solid Perfumes"
     },
-    "colors": {
-      "title": "الألوان",
-      "fields": {
-        "background": {
-          "type": "color",
-          "label": "لون الخلفية",
-          "default": "#FAF8F5"
-        },
-        "primary": {
-          "type": "color",
-          "label": "اللون الأساسي",
-          "default": "#1E1E1E"
-        }
-      }
-    }
-  }
+    "repository": "https://github.com/USERNAME/REPOSITORY_NAME",
+    "author_email": "m@majidk.com",
+    "support_url": "https://core-saudi.com",
+    "description": {
+        "ar": "قالب متجر كور للعطور الصلبة بتصميم فاخر وحاسبة باقة الرائحتين واختبار العطور",
+        "en": "Core Saudi solid perfumes luxury theme with duo bundle selector and scent quiz"
+    },
+    "features": [
+        "fonts",
+        "color",
+        "header",
+        "footer"
+    ],
+    "settings": [],
+    "components": []
 }
