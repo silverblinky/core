@@ -1,0 +1,71 @@
+{# Salla Twilight Layout - master.twig #}
+<!DOCTYPE html>
+<html lang="{{ user.language.code|default('ar') }}" dir="{{ user.language.dir|default('rtl') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title|default('كور | عطور صلبة سعودية') }}</title>
+    
+    {{ theme.head|raw }}
+
+    <!-- Fonts: IBM Plex Sans Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Theme Styles -->
+    <link rel="stylesheet" href="{{ 'app.css'|asset }}">
+
+    <!-- Alpine.js for lightweight, reactive interactives -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="{{ 'app.js'|asset }}"></script>
+</head>
+<body class="bg-[#FAF8F5] text-[#1E1E1E] font-['IBM_Plex_Sans_Arabic',sans-serif] antialiased min-h-screen flex flex-col selection:bg-[#1E1E1E] selection:text-[#FAF8F5]"
+      x-data="coreStore">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#1E1E1E]/5">
+        <div class="max-w-6xl mx-auto grid grid-cols-3 items-center px-6 py-4">
+            <nav class="flex items-center gap-6 text-[15px] font-light">
+                <a href="#featured" class="hover:text-[#1E1E1E]/70 transition-colors">العطور</a>
+                <a href="#why-core" class="hidden md:inline hover:text-[#1E1E1E]/70 transition-colors">عن كور</a>
+                <a href="#reviews" class="hidden md:inline hover:text-[#1E1E1E]/70 transition-colors">التقييمات</a>
+            </nav>
+            <div class="flex justify-center">
+                <a href="/" class="text-xl md:text-2xl font-semibold tracking-[0.25em] uppercase">CORE</a>
+            </div>
+            <div class="flex justify-end items-center gap-4">
+                <a href="#featured" class="text-xs uppercase tracking-wider font-medium px-4 py-2 rounded-full border border-[#1E1E1E] hover:bg-[#1E1E1E] hover:text-[#FAF8F5] transition-all">
+                    تسوق الآن
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#FAF8F5] border-t border-[#1E1E1E]/10 py-12 px-6 mt-20">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-start">
+            <div>
+                <p class="text-lg font-semibold tracking-[0.2em]">CORE</p>
+                <p class="text-xs text-[#1E1E1E]/60 mt-1">عطر صلب بروائح مختارة، مصنوع في المملكة العربية السعودية.</p>
+            </div>
+            <div class="flex gap-6 text-xs text-[#1E1E1E]/60">
+                <a href="/p/privacy-policy" class="hover:underline">سياسة الخصوصية</a>
+                <a href="/p/terms" class="hover:underline">الشروط والأحكام</a>
+                <a href="/p/contact" class="hover:underline">تواصل معنا</a>
+            </div>
+            <p class="text-[11px] text-[#1E1E1E]/40" dir="ltr">© {{ "now"|date("Y") }} Core Saudi. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scent Quiz Modal -->
+    {% include 'scent-quiz.twig' ignore missing %}
+
+    {{ theme.foot|raw }}
+</body>
+</html>

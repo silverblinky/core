@@ -1,0 +1,31 @@
+/* Core Saudi Salla Theme Stylesheet */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-main: #FAF8F5;
+    --text-main: #1E1E1E;
+    --border-color: rgba(30, 30, 30, 0.1);
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Luxury Editorial Styling */
+h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+}
+
+/* Custom transitions */
+.transition-smooth {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}

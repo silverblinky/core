@@ -1,0 +1,61 @@
+{# Scent Quiz Modal - scent-quiz.twig #}
+<div x-show="showQuiz" 
+     x-cloak
+     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1E1E1E]/60 backdrop-blur-sm"
+     @keydown.escape.window="closeQuiz()">
+    <div class="bg-[#FAF8F5] border border-[#1E1E1E]/20 rounded-3xl p-6 md:p-8 max-w-lg w-full shadow-2xl relative"
+         @click.outside="closeQuiz()">
+        
+        <button @click="closeQuiz()" class="absolute top-5 left-5 text-[#1E1E1E]/40 hover:text-[#1E1E1E] text-xl font-mono">✕</button>
+
+        <!-- Quiz In Progress -->
+        <template x-if="!quizFinished">
+            <div>
+                <div class="flex items-center justify-between text-xs text-[#1E1E1E]/50 mb-6">
+                    <span class="font-mono" x-text="'سؤال ' + (quizStep + 1) + ' من ' + quizQuestions.length"></span>
+                    <span class="bg-[#1E1E1E]/5 px-2 py-0.5 rounded-full font-mono" x-text="Math.round(((quizStep + 1) / quizQuestions.length) * 100) + '%'"></span>
+                </div>
+
+                <h3 class="text-xl md:text-2xl font-light mb-6" x-text="quizQuestions[quizStep].q"></h3>
+
+                <div class="space-y-3">
+                    <template x-for="(ans, idx) in quizQuestions[quizStep].a" :key="idx">
+                        <button type="button"
+                                @click="answerQuiz(ans[1])"
+                                class="w-full p-4 rounded-xl border border-[#1E1E1E]/15 hover:border-[#1E1E1E] bg-white hover:bg-[#FAF8F5] text-start text-sm transition-all flex items-center justify-between">
+                            <span x-text="ans[0]"></span>
+                            <span class="text-xs text-[#1E1E1E]/40">←</span>
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </template>
+
+        <!-- Quiz Result -->
+        <template x-if="quizFinished">
+            <div class="text-center space-y-6 py-4">
+                <span class="text-3xl">✨</span>
+                <h3 class="text-2xl font-light">الرائحة المثالية لك</h3>
+                <div class="p-6 rounded-2xl bg-white border border-[#1E1E1E]/10 space-y-2">
+                    <p class="text-xl font-medium text-[#1E1E1E]" x-text="getScent(quizTopMatch)?.name"></p>
+                    <p class="text-xs text-[#1E1E1E]/60" x-text="getScent(quizTopMatch)?.mood"></p>
+                    <p class="text-xs text-[#1E1E1E]/80 mt-2 leading-relaxed" x-text="getScent(quizTopMatch)?.desc"></p>
+                </div>
+
+                <div class="pt-2 flex flex-col gap-3">
+                    <button type="button" 
+                            @click="applyQuizResult()"
+                            class="w-full py-3.5 rounded-full bg-[#1E1E1E] text-[#FAF8F5] text-sm font-medium hover:opacity-90">
+                        اختيار هذه الرائحة وإضافتها للطلب
+                    </button>
+                    <button type="button" 
+                            @click="resetQuiz()"
+                            class="text-xs text-[#1E1E1E]/50 underline hover:text-[#1E1E1E]">
+                        إعادة الاختبار
+                    </button>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</div>
